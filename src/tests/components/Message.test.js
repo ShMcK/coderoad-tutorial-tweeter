@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import { Message } from "../../components/Message/useState";
+import { Message, messageReducer } from "../../components/Message/useReducer";
 import { USER } from "../../config";
 
 const mockProps = {
@@ -58,5 +58,57 @@ describe("Message", () => {
     fireEvent.click(button);
     const count = utils.getByTitle("retweet_count");
     expect(count.textContent).toBe("12");
+  });
+});
+
+const initialState = {
+  retweeted: false,
+  retweet_count: 12,
+  favorited: false,
+  favorite_count: 22
+};
+
+describe("messageReducer", () => {
+  test("should display the initial values", () => {
+    const returnsState = messageReducer(initialState, { type: "UNKNOWN" });
+    expect(returnsState).toEqual(initialState);
+  });
+
+  test('should increment on "FAVORITE"', () => {
+    const nextState = messageReducer(initialState, { type: "FAVORITE" });
+    expect(nextState).toEqual({
+      ...initialState,
+      favorited: true,
+      favorite_count: 23
+    });
+  });
+
+  test('should return to default on second "FAVORITE"', () => {
+    const first = messageReducer(initialState, { type: "FAVORITE" });
+    const second = messageReducer(first, { type: "FAVORITE" });
+    expect(second).toEqual({
+      ...initialState,
+      favorited: false,
+      favorite_count: 22
+    });
+  });
+
+  test('should increment on "RETWEET"', () => {
+    const nextState = messageReducer(initialState, { type: "RETWEET" });
+    expect(nextState).toEqual({
+      ...initialState,
+      retweeted: true,
+      retweet_count: 13
+    });
+  });
+
+  test('should return to default on second "RETWEET"', () => {
+    const first = messageReducer(initialState, { type: "RETWEET" });
+    const second = messageReducer(first, { type: "RETWEET" });
+    expect(second).toEqual({
+      ...initialState,
+      retweeted: false,
+      retweet_count: 12
+    });
   });
 });

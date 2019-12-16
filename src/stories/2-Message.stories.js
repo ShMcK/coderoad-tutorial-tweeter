@@ -1,5 +1,6 @@
 import React from "react";
-import { Message } from "../components/Message/useState";
+import { Message as UseStateMessage } from "../components/Message/useState";
+import { Message as UseReducerMessage } from "../components/Message/useReducer";
 import { USER } from "../config";
 
 export default {
@@ -21,9 +22,17 @@ const post = {
 };
 
 export const useStateMessage = () => {
-  return <Message {...post} />;
+  return <UseStateMessage {...post} />;
 };
 
 useStateMessage.story = {
   name: "useState example"
+};
+
+export const useReducerMessage = () => {
+  return <UseReducerMessage {...post} />;
+};
+
+useReducerMessage.story = {
+  name: "useReducer example"
 };
