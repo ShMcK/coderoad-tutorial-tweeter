@@ -7,12 +7,12 @@ import { MAX_MESSAGE_TEXT_LENGTH } from "../../config";
 import "./styles.css";
 
 export const MessageForm = ({ user }) => {
-  let text = "";
+  const [text, setText] = React.useState("");
 
   const handleChange = event => {
     event.preventDefault();
     const updatedText = event.target.value;
-    text = updatedText; // TODO: update text on change
+    setText(updatedText);
   };
 
   return (
