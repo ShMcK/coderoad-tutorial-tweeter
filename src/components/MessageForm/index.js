@@ -38,7 +38,7 @@ export const MessageForm = ({ user }) => {
             variant="primary"
             type="submit"
             role="tweet"
-            /* TODO: disable button if no text */
+            disabled={text.length < 1}
           >
             Tweet
           </Button>
