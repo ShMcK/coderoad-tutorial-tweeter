@@ -8,9 +8,17 @@ import "./styles.css";
 export const messageReducer = (state, action) => {
   switch (action.type) {
     case "RETWEET":
-    // TODO: retweet
+      return {
+        ...state,
+        retweeted: !state.retweeted,
+        retweet_count: state.retweet_count + (!state.retweeted ? 1 : -1)
+      };
     case "FAVORITE":
-    // TODO: favorite
+      return {
+        ...state,
+        favorited: !state.favorited,
+        favorite_count: state.favorite_count + (!state.favorited ? 1 : -1)
+      };
     default:
       return state;
   }
@@ -51,30 +59,30 @@ export const Message = props => {
         <div className="Message_Body">{text}</div>
         <div className="Message_Footer">
           <Icon icon="comment" title="comment" />
-          <IconCountWrapper title="retweet_count" count={0}>
+          <IconCountWrapper title="retweet_count" count={state.retweet_count}>
             <IconButton
               role="retweet"
               onClick={() => {
-                /* toggle retweet */
+                dispatch({ type: "RETWEET" });
               }}
             >
               <Icon
                 icon="retweet"
-                active={false}
+                active={state.retweeted}
                 highlight="rgb(23, 191, 99)"
               />
             </IconButton>
           </IconCountWrapper>
-          <IconCountWrapper title="favorite_count" count={0}>
+          <IconCountWrapper title="favorite_count" count={state.favorite_count}>
             <IconButton
               role="favorite"
               onClick={() => {
-                /* toggle favorite */
+                dispatch({ type: "FAVORITE" });
               }}
             >
               <Icon
                 icon="favorite"
-                active={false}
+                active={state.favorited}
                 highlight="rgb(224, 36, 94)"
               />
             </IconButton>
