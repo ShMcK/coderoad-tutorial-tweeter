@@ -31,7 +31,7 @@ export const MessageForm = ({ user }) => {
         </Form.Group>
         <div className="MessageForm_Options">
           <span className="MessageForm_TextCount" title="text-count">
-            0 / {MAX_MESSAGE_TEXT_LENGTH} {/* TODO: update text letter count */}
+            {text.length} / {MAX_MESSAGE_TEXT_LENGTH}
           </span>
           <Button
             className="MessageForm_TweetButton"
