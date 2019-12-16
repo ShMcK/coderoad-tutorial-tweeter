@@ -16,6 +16,8 @@ export const Message = props => {
     text
   } = props;
 
+  /* TODO: toggle retweet & favorite status & count on click */
+
   return (
     <Card
       className="Message"
@@ -37,7 +39,7 @@ export const Message = props => {
             <IconButton
               role="retweet"
               onClick={() => {
-                /* toggle retweet */
+                /* toggle retweet locally */
               }}
             >
               <Icon
@@ -51,7 +53,7 @@ export const Message = props => {
             <IconButton
               role="favorite"
               onClick={() => {
-                /* toggle favorite */
+                /* toggle favorite locally */
               }}
             >
               <Icon
