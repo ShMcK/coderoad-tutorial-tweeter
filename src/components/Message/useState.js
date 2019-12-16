@@ -16,7 +16,15 @@ export const Message = props => {
     text
   } = props;
 
-  /* TODO: toggle retweet & favorite status & count on click */
+  const [retweet, toggleRetweet] = React.useState({
+    toggled: retweeted,
+    count: retweet_count
+  });
+
+  const [favorite, toggleFavorite] = React.useState({
+    toggled: favorited,
+    count: favorite_count
+  });
 
   return (
     <Card
@@ -35,30 +43,36 @@ export const Message = props => {
         <div className="Message_Body">{text}</div>
         <div className="Message_Footer">
           <Icon icon="comment" title="comment" />
-          <IconCountWrapper title="retweet_count" count={0}>
+          <IconCountWrapper title="retweet_count" count={retweet.count}>
             <IconButton
               role="retweet"
               onClick={() => {
-                /* toggle retweet locally */
+                toggleRetweet({
+                  count: retweet.count + (retweet.toggled ? -1 : 1),
+                  toggled: !retweet.toggled
+                });
               }}
             >
               <Icon
                 icon="retweet"
-                active={false}
+                active={retweet.toggled}
                 highlight="rgb(23, 191, 99)"
               />
             </IconButton>
           </IconCountWrapper>
-          <IconCountWrapper title="favorite_count" count={0}>
+          <IconCountWrapper title="favorite_count" count={favorite.count}>
             <IconButton
               role="favorite"
               onClick={() => {
-                /* toggle favorite locally */
+                toggleFavorite({
+                  count: favorite.count + (favorite.toggled ? -1 : 1),
+                  toggled: !favorite.toggled
+                });
               }}
             >
               <Icon
                 icon="favorite"
-                active={false}
+                active={favorite.toggled}
                 highlight="rgb(224, 36, 94)"
               />
             </IconButton>
