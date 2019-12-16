@@ -6,6 +6,15 @@ import { Card } from "../Card";
 import { MAX_MESSAGE_TEXT_LENGTH } from "../../config";
 import "./styles.css";
 
+export const useText = initialText => {
+  // TODO: extract useState logic out of MessageForm
+
+  return {
+    text,
+    handleChange
+  };
+};
+
 export const MessageForm = ({ user }) => {
   const [text, setText] = React.useState("");
 

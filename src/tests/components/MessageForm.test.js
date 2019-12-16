@@ -1,6 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import { MessageForm } from "../../components/MessageForm";
+import { renderHook, act } from "@testing-library/react-hooks";
+import { MessageForm, useText } from "../../components/MessageForm";
 import { USER, MAX_MESSAGE_TEXT_LENGTH } from "../../config";
 
 describe("MessageForm", () => {
@@ -48,5 +49,32 @@ describe("MessageForm", () => {
     fireEvent.change(input, { target: { value: text } });
     const button = utils.getByRole("tweet");
     expect(button.disabled).toBe(false);
+  });
+});
+
+describe("useText", () => {
+  test("useText hook should initiate text to empty string", () => {
+    const { result } = renderHook(useText);
+    expect(result.current.text).toBe("");
+  });
+
+  test("useText hook should return a handleChange function", () => {
+    const { result } = renderHook(useText);
+    expect(result.current.handleChange).toBeDefined();
+  });
+
+  test("useText hook allow updates of text", () => {
+    const { result } = renderHook(useText);
+
+    act(() => {
+      const event = {
+        preventDefault() {},
+        target: {
+          value: "10 letters"
+        }
+      };
+      result.current.handleChange(event);
+    });
+    expect(result.current.text).toBe("10 letters");
   });
 });
