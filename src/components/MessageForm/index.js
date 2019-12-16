@@ -7,15 +7,6 @@ import { MAX_MESSAGE_TEXT_LENGTH } from "../../config";
 import "./styles.css";
 
 export const useText = initialText => {
-  // TODO: extract useState logic out of MessageForm
-
-  return {
-    text,
-    handleChange
-  };
-};
-
-export const MessageForm = ({ user }) => {
   const [text, setText] = React.useState("");
 
   const handleChange = event => {
@@ -24,20 +15,26 @@ export const MessageForm = ({ user }) => {
     setText(updatedText);
   };
 
+  return {
+    text,
+    handleChange
+  };
+};
+
+export const MessageForm = ({ user }) => {
+  const { text, handleChange } = useText("");
   return (
     <Card className="MessageForm" profile_image={user.profile_image}>
       <Form>
-        <Form.Group>
-          <Form.Control
-            className="MessageForm_TextArea"
-            aria-label="message-form"
-            as="textarea"
-            rows="3"
-            placeholder="What's happening?"
-            value={text}
-            onChange={handleChange}
-          />
-        </Form.Group>
+        <Form.Group
+          className="MessageForm_TextArea"
+          aria-label="message-form"
+          as="textarea"
+          rows="3"
+          placeholder="What's happening?"
+          value={text}
+          onChange={handleChange}
+        ></Form.Group>
         <div className="MessageForm_Options">
           <span className="MessageForm_TextCount" title="text-count">
             {text.length} / {MAX_MESSAGE_TEXT_LENGTH}
