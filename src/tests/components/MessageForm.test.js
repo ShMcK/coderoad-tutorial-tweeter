@@ -4,7 +4,7 @@ import { renderHook, act } from "@testing-library/react-hooks";
 import { MessageForm, useText } from "../../components/MessageForm";
 import { USER, MAX_MESSAGE_TEXT_LENGTH } from "../../config";
 
-describe("MessageForm", () => {
+describe.skip("MessageForm", () => {
   test("initiates text as empty", () => {
     const utils = render(<MessageForm user={USER} />);
     const input = utils.getByLabelText("message-form");
@@ -52,7 +52,7 @@ describe("MessageForm", () => {
   });
 });
 
-describe("useText", () => {
+describe.skip("useText", () => {
   test("useText hook should initiate text to empty string", () => {
     const { result } = renderHook(useText);
     expect(result.current.text).toBe("");

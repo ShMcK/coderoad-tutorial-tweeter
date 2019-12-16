@@ -1,0 +1,32 @@
+.Message {
+  background-color: white;
+}
+
+.Message:hover {
+  background-color: #f5f8fa;
+}
+
+.Message_Header {
+}
+
+.Message_Header_User {
+  margin-right: 0.2rem;
+  font-weight: bold;
+}
+
+.Message_Header_Username {
+  margin-right: 0.2rem;
+}
+
+.Message_Header_PostTime {
+}
+
+.Message_Body {
+}
+
+.Message_Footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 15px 0px 15px;
+}
