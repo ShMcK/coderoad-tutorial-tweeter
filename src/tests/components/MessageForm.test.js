@@ -34,4 +34,19 @@ describe("MessageForm", () => {
       `${text.length} / ${MAX_MESSAGE_TEXT_LENGTH}`
     );
   });
+
+  test("disables tweet button when text is empty", () => {
+    const utils = render(<MessageForm user={USER} />);
+    const button = utils.getByRole("tweet");
+    expect(button.disabled).toBe(true);
+  });
+
+  test("updates with user typing", () => {
+    const text = "A";
+    const utils = render(<MessageForm user={USER} />);
+    const input = utils.getByLabelText("message-form");
+    fireEvent.change(input, { target: { value: text } });
+    const button = utils.getByRole("tweet");
+    expect(button.disabled).toBe(false);
+  });
 });
