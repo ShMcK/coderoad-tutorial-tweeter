@@ -5,7 +5,9 @@
   "scripts": {
     "build": "react-app-rewired build",
     "start": "react-app-rewired start",
-    "test": "react-app-rewired test --watchAll=false"
+    "test": "react-app-rewired test --watchAll=false",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "browserslist": {
     "production": [
@@ -23,15 +25,26 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^8.0.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "bootstrap": "^4.4.1",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-scripts": "^3.3.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "@testing-library/dom": "^6.11.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/react-hooks": "^3.2.1",
     "jest-tap-reporter": "^1.9.0",
-    "react-app-rewired": "^2.1.5"
+    "react-app-rewired": "^2.1.5",
+    "react-test-renderer": "^16.12.0"
   }
 }

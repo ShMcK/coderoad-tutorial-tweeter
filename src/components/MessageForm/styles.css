@@ -1,0 +1,39 @@
+.MessageForm {
+  border-bottom: 4px solid lightgrey;
+}
+
+.MessageForm_Form {
+  font-size: 15px;
+}
+
+.MessageForm_TextArea {
+  border: none;
+  padding-left: 15px;
+  padding-right: 15px;
+  resize: none;
+}
+
+.MessageForm_TextArea:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.MessageForm_Options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0px 2px;
+}
+
+.MessageForm_TextCount {
+  margin-right: 15px;
+}
+
+.MessageForm_TweetButton {
+  line-height: 1;
+  font-weight: bold;
+  text-align: center;
+  height: 39px;
+  min-width: 63px;
+  border-radius: 9999px;
+}

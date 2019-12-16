@@ -1,0 +1,17 @@
+.Card {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  width: 100%;
+}
+
+.Card_LeftColumn {
+  display: flex;
+  width: 50px;
+  justify-content: center;
+}
+
+.Card_RightColumn {
+  padding-left: 1rem;
+  width: 100%;
+}
