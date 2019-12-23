@@ -6,19 +6,20 @@ import "./styles.css";
 import fetchData from "../../services/api";
 
 export const Feed = () => {
-  const loading = true;
-  const error = null;
-  const data = null;
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
+  const [data, setData] = React.useState(null);
 
-  // TODO: useEffect to load state from fetchData
-  fetchData("messages")
-    .then(messages => {
-      data = messages;
-      loading = false;
-    })
-    .catch(error => {
-      error = error;
-    });
+  React.useEffect(() => {
+    fetchData("messages")
+      .then(result => {
+        setData(result);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error);
+      });
+  }, []);
 
   if (loading) {
     return (
