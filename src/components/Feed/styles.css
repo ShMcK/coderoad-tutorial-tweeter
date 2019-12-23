@@ -1,0 +1,9 @@
+.Feed {
+  background-color: "red";
+}
+
+.Feed_Loading {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
