@@ -5,6 +5,16 @@ import "./styles.css";
 
 import fetchData from "../../services/api";
 
+export const useApi = url => {
+  // TODO: loading, error, data loader from API
+  // TODO: pass the url in so that we call fetchData(url)
+  return {
+    loading,
+    error,
+    data
+  };
+};
+
 export const Feed = () => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);

@@ -1,7 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { waitForElementToBeRemoved } from "@testing-library/dom";
-import { Feed } from "../../components/Feed";
+import { renderHook } from "@testing-library/react-hooks";
+import { Feed, useApi } from "../../components/Feed";
 
 const mockData = [
   {
@@ -43,5 +44,38 @@ describe("Feed", () => {
     });
     const feed = utils.getByTitle("feed");
     expect(feed).toBeDefined();
+  });
+});
+
+// Hook
+
+describe("useApi", () => {
+  test("should initialize with an error null", async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useApi());
+    await waitForNextUpdate();
+    expect(result.current.error).toBe(null);
+  });
+
+  // generated useEffect async warnings
+  test("should initialize with loading true", async () => {
+    const { result } = renderHook(() => useApi());
+    expect(result.current.loading).toBe(true);
+  });
+
+  test("should change loading to true on update", async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useApi());
+    await waitForNextUpdate();
+    expect(result.current.loading).toBe(false);
+  });
+
+  test("should initialize with data null", () => {
+    const { result } = renderHook(() => useApi());
+    expect(result.current.data).toBe(null);
+  });
+
+  test("should return data once api completes", async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useApi());
+    await waitForNextUpdate();
+    expect(result.current.data.length).toBe(1);
   });
 });
