@@ -6,8 +6,20 @@ import "./styles.css";
 import fetchData from "../../services/api";
 
 export const useApi = url => {
-  // TODO: loading, error, data loader from API
-  // TODO: pass the url in so that we call fetchData(url)
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    fetchData(url)
+      .then(result => {
+        setData(result);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error);
+      });
+  }, [url]);
   return {
     loading,
     error,
@@ -16,21 +28,7 @@ export const useApi = url => {
 };
 
 export const Feed = () => {
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetchData("messages")
-      .then(result => {
-        setData(result);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error);
-      });
-  }, []);
-
+  const { loading, error, data } = useApi("messages");
   if (loading) {
     return (
       <div className="Feed">
